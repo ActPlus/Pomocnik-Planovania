@@ -5,8 +5,6 @@
  */
 package sk.kuznecov.pomocnikplanovania;
 
-import java.util.Date;
-
 /**
  *
  * @author Ja
