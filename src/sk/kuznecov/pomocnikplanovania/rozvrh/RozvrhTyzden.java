@@ -6,13 +6,15 @@
 package sk.kuznecov.pomocnikplanovania.rozvrh;
 
 import java.awt.Graphics;
-import java.sql.Time;
+import java.awt.GridLayout;
+import sk.kuznecov.pomocnikplanovania.Updateable;
+
 
 /**
  *
  * @author Ja
  */
-public class RozvrhTyzden extends Rozvrh{
+public class RozvrhTyzden extends Rozvrh implements Updateable{
     
     private  RozvrhDen[] dni;
 
@@ -20,17 +22,28 @@ public class RozvrhTyzden extends Rozvrh{
     
     private final int pocetDniV_Tyzdni=7;
 
-    public RozvrhTyzden(int x, int y, int width, int height) {
-        super(x, y, width, height);
+
+    public RozvrhTyzden() {
         dni = new RozvrhDen[pocetDniV_Tyzdni];
-        
-        
-        int posunY=height/pocetDniV_Tyzdni;
-        
-        for (int i = 0; i < dni.length; i++) {
-            dni[i] = new RozvrhDen(x, y+posunY*i, width, height/pocetDniV_Tyzdni);
+        //int posunY=bounds.height/pocetDniV_Tyzdni;
+        setLayout(new GridLayout(7, 1,0,2));
+        for (int i = 0; i < pocetDniV_Tyzdni; i++) {
+            dni[i] = new RozvrhDen();
+            this.add(dni[i]);
         }
+        validate();
+        repaint();
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); 
+        //drawBorder(g, Color.BLACK,0);
+    }
+    
+    
+    
+    
 
   
 
